@@ -12,6 +12,10 @@
 	background: #BABABA;
 }
 
+.mood-container p {
+  text-align: center;
+}
+
 .sky-logo {
   margin-right: 20px;
 }
