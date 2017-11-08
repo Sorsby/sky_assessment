@@ -14,31 +14,31 @@ angular.module('moodsliderApp.home', ['ngRoute'])
     this.moodMin = 0;
     this.moodMax = 10;
 
-    //factor out into provider/service
+    //TODO: factor out into provider/service.
     this.moods = {
       'mood1': {
         'min': 'Agitated',
         'max': 'Calm',
-        'sliderValue': 0
+        'sliderValue': 5
       },
       'mood2': {
         'min': 'Happy',
         'max': 'Sad',
-        'sliderValue': 0
+        'sliderValue': 5
       },
       'mood3': {
         'min': 'Tired',
         'max': 'Wide Awake',
-        'sliderValue': 0
+        'sliderValue': 5
       },
       'mood4': {
         'min': 'Scared',
         'max': 'Fearless',
-        'sliderValue': 0
+        'sliderValue': 5
       },
     }
 
-    //factor out into provider/service
+    //TODO: factor out into provider/service.
     //should ideally be constructed as and when the sliders are changed with new recommendatiosn from uploaded data.
     this.programmes = {
       '1': {
@@ -63,5 +63,4 @@ angular.module('moodsliderApp.home', ['ngRoute'])
       }
     }
 
-    this.placeholder = "Home Controller Working!"
   }]);

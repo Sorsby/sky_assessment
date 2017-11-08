@@ -12,4 +12,5 @@ angular.module('moodsliderApp.upload', ['ngRoute'])
 
 .controller('UploadCtrl', [function() {
   this.placeholder = "Upload Controller Working!"
+  //TODO: Implement the functionality of uploading data XML files.
 }]);
