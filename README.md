@@ -8,26 +8,19 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Usage
 
-Firstly ensure you have both node and npm installed on your machine.
+You need ```node``` and ```npm``` to run and test this project.
 
-Install the angular cli:
-```
-npm install -g @angular/cli
-```
+Install dependencies with ```npm install``` post completion a hook will run ```bower install``` for you.
 
-Navigate into the angular project folder:
-```
-cd moodslider
-```
+You may need to run ```npm install http-server -g``` to install and be able to run a local web server.
 
-You can start the local web server by the following command:
-```
-ng serve --open
-```
+Once all pre-requisites are met you can run the project with either ```npm start``` or ```http-server -o```.
 
 ## Built With
 
-* [Angular](https://angular.io/) - The web framework used
+* [AngularJS](https://angularjs.org/) - The web framework used
+* [Bootstrap](https://getbootstrap.com/) - Front end framework
+* [bootstrap-slider](https://github.com/seiyria/bootstrap-slider/) - Used for the sliders
 
 ## Authors
 
