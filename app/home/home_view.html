@@ -1,0 +1,59 @@
+<div ng-controller="HomeCtrl as home">
+
+    <!-- Four sliders to control the mood settings -->
+    <div class="mood-container">
+            <div class="row" ng-repeat="mood in home.moods">
+                <div class="col-sm-1"></div>
+                <slider class="col-lg-10" ng-model="mood.sliderValue" min="home.moodMin" step="1" max="home.moodMax" value="5"></slider>
+                <div class="col-sm-1"></div>
+            </div>
+    </div>
+
+    <div class="programme-container">
+        <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="col-lg-2">
+                <div class="card">
+                    <img class="card-img-top" src="../imgs/sky_logo.png" alt="Card image cap">
+                    <div class="card-block">
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="card">
+                    <img class="card-img-top" src="../imgs/sky_logo.png" alt="Card image cap">
+                    <div class="card-block">
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="card">
+                    <img class="card-img-top" src="../imgs/sky_logo.png" alt="Card image cap">
+                    <div class="card-block">
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="card">
+                    <img class="card-img-top" src="../imgs/sky_logo.png" alt="Card image cap">
+                    <div class="card-block">
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="card">
+                    <img class="card-img-top" src="../imgs/sky_logo.png" alt="Card image cap">
+                    <div class="card-block">
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-1"></div>
+        </div>
+    </div>
+
+</div>

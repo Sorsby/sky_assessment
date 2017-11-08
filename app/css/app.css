@@ -1,0 +1,26 @@
+.programme-container {
+  padding: 25px;
+  background-color: #BABABA;
+}
+
+.mood-container .row {
+  padding: 15px;
+}
+
+/* Colours the selected portion of a slider */
+.mood-container .slider-selection {
+	background: #BABABA;
+}
+
+.sky-logo {
+  margin-right: 20px;
+}
+
+.navbar-expand-lg .navbar-nav .nav-link {
+  padding-right: 1rem;
+  padding-left: 0rem;
+}
+
+#ex1Slider .slider-selection {
+	background: #BABABA;
+}
