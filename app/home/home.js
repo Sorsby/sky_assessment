@@ -9,38 +9,21 @@ angular.module('moodsliderApp.home', ['ngRoute'])
     });
   }])
 
-  .controller('HomeCtrl', [function () {
+  .controller('HomeCtrl', ['$http', '$scope', function ($http, $scope) {
 
-    this.moodMin = 0;
-    this.moodMax = 10;
+    $scope.moodMin = 0;
+    $scope.moodMax = 10;
 
-    //TODO: factor out into provider/service.
-    this.moods = {
-      'mood1': {
-        'min': 'Agitated',
-        'max': 'Calm',
-        'sliderValue': 5
-      },
-      'mood2': {
-        'min': 'Happy',
-        'max': 'Sad',
-        'sliderValue': 5
-      },
-      'mood3': {
-        'min': 'Tired',
-        'max': 'Wide Awake',
-        'sliderValue': 5
-      },
-      'mood4': {
-        'min': 'Scared',
-        'max': 'Fearless',
-        'sliderValue': 5
-      },
-    }
+    $http.get('../data/moods.json').success(function(data) {
+      $scope.moods = data;
+      console.log($scope.moods);
+    }).error(function(data, status) {
+      console.log("Error: No mood data available, check moods.json is complete and correct!");
+    });
 
     //TODO: factor out into provider/service.
     //should ideally be constructed as and when the sliders are changed with new recommendatiosn from uploaded data.
-    this.programmes = {
+    $scope.programmes = {
       '1': {
         'title': 'No Content',
         'image_path': 'No Content'

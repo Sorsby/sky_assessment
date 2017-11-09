@@ -1,14 +1,13 @@
 <div ng-controller="HomeCtrl as home">
-
     <!-- Four sliders to control the mood settings -->
     <div class="mood-container">
         <!-- FIXME: Remove or alternatively display the slider values  -->
-        {{home.moods.mood1.sliderValue}} {{home.moods.mood2.sliderValue}} {{home.moods.mood3.sliderValue}} {{home.moods.mood4.sliderValue}}
-        <div class="row" ng-repeat="mood in home.moods">
+        {{moods.mood1.sliderValue}} {{moods.mood2.sliderValue}} {{moods.mood3.sliderValue}} {{moods.mood4.sliderValue}}
+        <div class="row" ng-repeat="mood in moods">
             <div class="col-sm-2">
                 <p>{{mood.min}}</p>
             </div>
-            <slider class="col-lg-8" ng-model="mood.sliderValue" min="home.moodMin" max="home.moodMax" step="1"></slider>
+            <slider class="col-lg-8" ng-model="mood.sliderValue" min="moodMin" max="moodMax" step="1"></slider>
             <div class="col-sm-2">
                 <p>{{mood.max}}</p>
             </div>
@@ -19,7 +18,7 @@
         <div class="row">
             <div class="col-sm-1"></div>
 
-            <div class="col-lg-2" ng-repeat="programme in home.programmes">
+            <div class="col-lg-2" ng-repeat="programme in programmes">
                 <div class="card">
                     <!-- TODO: Replace placeholder images with real image paths -->
                     <img class="card-img-top" src="../imgs/sky_logo.png" alt="Card image cap">
