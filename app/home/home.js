@@ -11,6 +11,9 @@ angular.module('moodsliderApp.home', ['ngRoute'])
 
   .controller('HomeCtrl', ['$http', '$scope', 'myProgrammeDataService', function ($http, $scope, myProgrammeDataService) {
 
+    var defaultMoodsFile = "../data/default_moods.json";
+    var defaultProgrammesFile = "../data/default_programmes.json";
+
     $scope.moods = {};
     $scope.moodMin = -5;
     $scope.moodMax = 5;
@@ -20,34 +23,34 @@ angular.module('moodsliderApp.home', ['ngRoute'])
     //TODO: Not sure if this is the best way to handle this,
     //Opted to store default settings in JSON files instead of hardcoding in this controller.
     //Would investigate better options if I had more time.
-    $http.get('../data/moods.json').success(function (data) {
-      calculateMoodScores(data);
-      $scope.moods = data;
-    }).error(function (data, status) {
-      console.log("Error: No mood data available, check moods.json is complete and correct!");
-    });
+    var setupMoodSliders = function () {
+      $http.get(defaultMoodsFile).success(function (data) {
+        var scores = calculateMoodScores(data);
+        updateRecommendedProgrammes(scores);
+        $scope.moods = data;
+      }).error(function (data, status) {
+        console.log("Error: No mood data available, check moods.json is complete and correct!");
+      });
+    };
 
     //Same as above.
     programmes = myProgrammeDataService.getJson();
     if (!programmes) {
-      $http.get('../data/programmes.json').success(function (data) {
+      $http.get(defaultProgrammesFile).success(function (data) {
         programmes = data;
         $scope.recommendedProgrammes = programmes;
       }).error(function (data, status) {
         console.log("Error: No programme data available, check programme.json is complete and correct!");
       });
-    } else {
-      $scope.recommendedProgrammes = programmes;
     }
-    console.log($scope.programmes);
+    setupMoodSliders();
 
     $scope.sliderCallback = function ($event, value) {
       var scores = calculateMoodScores($scope.moods);
-      console.log(scores);
-      $scope.recommendedProgrammes = fetchProgrammeRecommendations(scores);
+      updateRecommendedProgrammes(scores);
     };
 
-    //TODO: Perhaps factor out this utility function.
+    //TODO: Factor out into the recommendation service.
     var calculateMoodScores = function (data) {
       var moodScores = {};
       for (var key in data) {
@@ -61,6 +64,7 @@ angular.module('moodsliderApp.home', ['ngRoute'])
       return moodScores;
     };
 
+    //TODO: Factor out into a service.
     var fetchProgrammeRecommendations = function (scores) {
       var recommendations = [];
 
@@ -75,10 +79,14 @@ angular.module('moodsliderApp.home', ['ngRoute'])
       return recommendations;
     };
 
-    //TODO: Factor out in some utility file.
-    var getRandomInt = function (min, max) {
-      min = Math.ceil(min);
-      max = Math.floor(max);
-      return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+    var updateRecommendedProgrammes = function(moodScores) {
+      $scope.recommendedProgrammes = fetchProgrammeRecommendations(moodScores);
     };
+
+    // //TODO: Factor out in some utility file.
+    // var getRandomInt = function (min, max) {
+    //   min = Math.ceil(min);
+    //   max = Math.floor(max);
+    //   return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+    // };
   }]);

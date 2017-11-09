@@ -2,11 +2,12 @@
     <!-- Four sliders to control the mood settings -->
     <div class="mood-container">
         <div class="row" ng-repeat="mood in moods">
-            <div class="col-sm-2">
+            <div class="col-sm-3">
                 <p>{{mood.min}}</p>
             </div>
-            <slider class="col-lg-8" ng-model="mood.sliderValue" on-stop-slide="sliderCallback($event,value)" min="moodMin" max="moodMax" step="1"></slider>
-            <div class="col-sm-2">
+            <slider class="col-lg-6" ng-model="mood.sliderValue" on-stop-slide="sliderCallback($event,value)" min="moodMin" max="moodMax"
+                step="1"></slider>
+            <div class="col-sm-3">
                 <p>{{mood.max}}</p>
             </div>
         </div>
