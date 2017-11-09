@@ -44,7 +44,6 @@ angular.module('moodsliderApp.home', ['ngRoute'])
     $scope.sliderCallback = function ($event, value) {
       var scores = calculateMoodScores($scope.moods);
       console.log(scores);
-      //TODO: update the programme recommendations.
       $scope.recommendedProgrammes = fetchProgrammeRecommendations(scores);
     };
 
@@ -60,10 +59,12 @@ angular.module('moodsliderApp.home', ['ngRoute'])
         moodScores[mood.max] = Math.abs(mood.sliderValue);
       }
       return moodScores;
-    }
+    };
 
     var fetchProgrammeRecommendations = function (scores) {
       var recommendations = [];
+
+      //TODO: improve the recommendation code.
       for (var score in scores) {
         for (var programme in programmes) {
           if (score == programmes[programme].mood) {
@@ -71,7 +72,13 @@ angular.module('moodsliderApp.home', ['ngRoute'])
           }
         }
       }
-      console.log(recommendations);
       return recommendations;
-    }
+    };
+
+    //TODO: Factor out in some utility file.
+    var getRandomInt = function (min, max) {
+      min = Math.ceil(min);
+      max = Math.floor(max);
+      return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+    };
   }]);
