@@ -25,8 +25,8 @@ angular.module('moodsliderApp.home', ['ngRoute'])
     //Would investigate better options if I had more time.
     var setupMoodSliders = function () {
       $http.get(defaultMoodsFile).success(function (data) {
-        var scores = calculateMoodScores(data);
-        updateRecommendedProgrammes(scores);
+        var scores = calculateMoodScores($scope.moods);
+        updateRecommendedProgrammes(scores)
         $scope.moods = data;
       }).error(function (data, status) {
         console.log("Error: No mood data available, check moods.json is complete and correct!");
@@ -67,21 +67,54 @@ angular.module('moodsliderApp.home', ['ngRoute'])
     //TODO: Factor out into a service.
     var fetchProgrammeRecommendations = function (scores) {
       var recommendations = [];
+      var moodRankings = [];
+      var totalMoodScore = 0;
 
-      //TODO: improve the recommendation code.
-      for (var score in scores) {
+      //loop through array of mood names and keep track of the highest slider value,
+      //save the mood name of the highest value to a ranking array for providing recommendations later.
+      var moodsToProcess = Object.keys(scores);
+      while (moodsToProcess.length != 0) {
+        var currentHighest = moodsToProcess[0];
+        for (var mood in scores) {
+          totalMoodScore = totalMoodScore + scores[mood];
+          if (scores[mood] > scores[currentHighest]) {
+            currentHighest = mood;
+          }
+        }
+
+        if (!isInArray(currentHighest, moodRankings) && totalMoodScore > 0) {
+          moodRankings.push(currentHighest);
+        }
+        //remove from the processing array.
+        moodsToProcess.splice(moodsToProcess.indexOf(currentHighest), 1);
+      }
+
+      console.log(moodRankings);
+      //if no slider input, show all programmes
+      if (moodRankings.length == 0){
+        recommendations = programmes;
+      }
+
+      //use given rankings to display relevant programmes
+      for (var mood in moodRankings) {
         for (var programme in programmes) {
-          if (score == programmes[programme].mood) {
+          if (moodRankings[mood] == programmes[programme].mood) {
             recommendations.push(programmes[programme]);
           }
         }
       }
+      console.log(recommendations);
       return recommendations;
     };
 
-    var updateRecommendedProgrammes = function(moodScores) {
+    var updateRecommendedProgrammes = function (moodScores) {
       $scope.recommendedProgrammes = fetchProgrammeRecommendations(moodScores);
     };
+
+    //TODO: Factor out into some util file.
+    var isInArray = function (value, array) {
+      return array.indexOf(value) > -1;
+    }
 
     // //TODO: Factor out in some utility file.
     // var getRandomInt = function (min, max) {
