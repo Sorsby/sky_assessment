@@ -2,21 +2,21 @@
     "mood1": {
         "min": "Agitated",
         "max": "Calm",
-        "sliderValue": 5
+        "sliderValue": 0
     },
     "mood2": {
         "min": "Happy",
         "max": "Sad",
-        "sliderValue": 5
+        "sliderValue": 0
     },
     "mood3": {
         "min": "Tired",
         "max": "Wide Awake",
-        "sliderValue": 5
+        "sliderValue": 0
     },
     "mood4": {
         "min": "Scared",
         "max": "Fearless",
-        "sliderValue": 5
+        "sliderValue": 0
     }
 }

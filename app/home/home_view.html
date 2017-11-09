@@ -5,7 +5,7 @@
             <div class="col-sm-2">
                 <p>{{mood.min}}</p>
             </div>
-            <slider class="col-lg-8" ng-model="mood.sliderValue" min="moodMin" max="moodMax" step="1"></slider>
+            <slider class="col-lg-8" ng-model="mood.sliderValue" on-stop-slide="sliderCallback($event,value)" min="moodMin" max="moodMax" step="1"></slider>
             <div class="col-sm-2">
                 <p>{{mood.max}}</p>
             </div>
@@ -16,7 +16,7 @@
         <div class="row">
             <div class="col-sm-1"></div>
 
-            <div class="col-lg-2" ng-repeat="programme in programmes">
+            <div class="col-lg-2 slide" ng-repeat="programme in recommendedProgrammes | limitTo: 5">
                 <div class="card">
                     <img class="card-img-top" ng-src="{{programme.image_path}}" alt="Card image cap">
                     <div class="card-block">

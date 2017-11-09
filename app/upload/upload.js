@@ -9,7 +9,7 @@ angular.module('moodsliderApp.upload', ['ngRoute'])
         });
     }])
 
-    .controller('UploadCtrl', ['$scope', 'Upload', 'ngXml2json', '$location', 'myProgrammeDataService', function ($scope, Upload, ngXml2json, $location, myProgrammeDataService) {
+    .controller('UploadCtrl', ['$scope', 'ngXml2json', '$location', 'myProgrammeDataService', function ($scope, ngXml2json, $location, myProgrammeDataService) {
         $scope.uploadFiles = function (file, errFiles) {
             $scope.f = file;
             $scope.errFile = errFiles && errFiles[0];
