@@ -5,7 +5,9 @@ var app = angular.module('moodsliderApp', [
   'ngRoute',
   'moodsliderApp.home',
   'moodsliderApp.upload',
-  'ui.bootstrap-slider'
+  'ui.bootstrap-slider',
+  'ngFileUpload',
+  'angularXml2json'
 ]).
 config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
   $locationProvider.hashPrefix('!');
@@ -14,3 +16,18 @@ config(['$locationProvider', '$routeProvider', function ($locationProvider, $rou
     redirectTo: '/home'
   });
 }]);
+
+app.factory('myProgrammeDataService', function () {
+  var programmeJson = null;
+  return {
+    getJson: function () {
+      if (programmeJson) {
+        return programmeJson.programme_data.programme;
+      }
+      return null;
+    },
+    setJson: function (value) {
+      programmeJson = value;
+    }
+  }
+});

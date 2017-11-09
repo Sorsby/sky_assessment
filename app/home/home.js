@@ -9,41 +9,25 @@ angular.module('moodsliderApp.home', ['ngRoute'])
     });
   }])
 
-  .controller('HomeCtrl', ['$http', '$scope', function ($http, $scope) {
+  .controller('HomeCtrl', ['$http', '$scope', 'myProgrammeDataService', function ($http, $scope, myProgrammeDataService) {
 
-    $scope.moodMin = 0;
-    $scope.moodMax = 10;
+    $scope.programmes = myProgrammeDataService.getJson();
+    console.log($scope.programmes);
+    if (!$scope.programmes) {
+      $http.get('../data/programmes.json').success(function (data) {
+        $scope.programmes = data;
+      }).error(function (data, status) {
+        console.log("Error: No programme data available, check moods.json is complete and correct!");
+      });
+    }
 
-    $http.get('../data/moods.json').success(function(data) {
+    $http.get('../data/moods.json').success(function (data) {
       $scope.moods = data;
-      console.log($scope.moods);
-    }).error(function(data, status) {
+    }).error(function (data, status) {
       console.log("Error: No mood data available, check moods.json is complete and correct!");
     });
 
-    //TODO: factor out into provider/service.
-    //should ideally be constructed as and when the sliders are changed with new recommendatiosn from uploaded data.
-    $scope.programmes = {
-      '1': {
-        'title': 'No Content',
-        'image_path': 'No Content'
-      },
-      '2': {
-        'title': 'No Content',
-        'image_path': 'No Content'
-      },
-      '3': {
-        'title': 'No Content',
-        'image_path': 'No Content'
-      },
-      '4': {
-        'title': 'No Content',
-        'image_path': 'No Content'
-      },
-      '5': {
-        'title': 'No Content',
-        'image_path': 'No Content'
-      }
-    }
+    $scope.moodMin = 0;
+    $scope.moodMax = 10;
 
   }]);

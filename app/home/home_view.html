@@ -21,9 +21,9 @@
             <div class="col-lg-2" ng-repeat="programme in programmes">
                 <div class="card">
                     <!-- TODO: Replace placeholder images with real image paths -->
-                    <img class="card-img-top" src="../imgs/sky_logo.png" alt="Card image cap">
+                    <img class="card-img-top" ng-src="{{programme.image_path}}" alt="Card image cap">
                     <div class="card-block">
-                        <p class="card-text">{{programme.title}}</p>
+                        <p class="card-text">{{programme.name}}</p>
                     </div>
                 </div>
             </div>
