@@ -1,8 +1,6 @@
-<div ng-controller="HomeCtrl as home">
+<div ng-controller="HomeCtrl">
     <!-- Four sliders to control the mood settings -->
     <div class="mood-container">
-        <!-- FIXME: Remove or alternatively display the slider values  -->
-        {{moods.mood1.sliderValue}} {{moods.mood2.sliderValue}} {{moods.mood3.sliderValue}} {{moods.mood4.sliderValue}}
         <div class="row" ng-repeat="mood in moods">
             <div class="col-sm-2">
                 <p>{{mood.min}}</p>
@@ -20,7 +18,6 @@
 
             <div class="col-lg-2" ng-repeat="programme in programmes">
                 <div class="card">
-                    <!-- TODO: Replace placeholder images with real image paths -->
                     <img class="card-img-top" ng-src="{{programme.image_path}}" alt="Card image cap">
                     <div class="card-block">
                         <p class="card-text">{{programme.name}}</p>
