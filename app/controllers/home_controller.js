@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('moodsliderApp')
-  .controller('HomeCtrl', ['$http', '$scope', 'myProgrammeDataService', function ($http, $scope, myProgrammeDataService) {
+  .controller('HomeCtrl', ['$http', '$scope', 'programmeService', function ($http, $scope, programmeService) {
 
     var defaultMoodsFile = "../data/default_moods.json";
     var defaultProgrammesFile = "../data/default_programmes.json";
@@ -26,7 +26,7 @@ angular.module('moodsliderApp')
     };
 
     //Same as above.
-    programmes = myProgrammeDataService.getJson();
+    programmes = programmeService.getJson();
     if (!programmes) {
       $http.get(defaultProgrammesFile).success(function (data) {
         programmes = data;
