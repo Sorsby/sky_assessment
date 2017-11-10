@@ -4,7 +4,8 @@ var app = angular.module('moodsliderApp', [
     'ngRoute',
     'ui.bootstrap-slider',
     'ngFileUpload',
-    'angularXml2json'
+    'angularXml2json',
+    'ngAnimate'
   ])
 
   .config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {

@@ -7,9 +7,13 @@ angular.module('moodsliderApp')
 
         return {
             setupMoodSliders: function (callback) {
-                $http.get(defaultMoodsFile).success(function (moodData) {
+                $http({
+                    method: 'GET',
+                    url: defaultMoodsFile
+                }).then(function (data) {
+                    var moodData = data.data;
                     callback(moodData);
-                }).error(function (data, status) {
+                }, function (error) {
                     console.log("Error: No mood data available, check moods.json is complete and correct!");
                 });
             }

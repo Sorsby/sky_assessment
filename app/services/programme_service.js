@@ -15,9 +15,13 @@ angular.module('moodsliderApp')
                     success(programmeJson.programme_data.programme);
                     return;
                 }
-                $http.get(defaultProgrammesFile).success(function (data) {
-                    failure(data);
-                }).error(function (data, status) {
+                $http({
+                    method: 'GET',
+                    url: defaultProgrammesFile
+                }).then(function (data) {
+                    var defaultProgrammeData = data.data;
+                    failure(defaultProgrammeData);
+                }, function (error) {
                     console.log("Error: No programme data available, check programme.json is complete and correct!");
                 });
             },
