@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('moodsliderApp')
-  .controller('HomeCtrl', ['$http', '$scope', 'programmeService', 'recommendationService',
-    function ($http, $scope, programmeService, recommendationService) {
+  .controller('HomeCtrl', ['$http', '$scope', 'programmeService', 'moodService', 'recommendationService',
+    function ($http, $scope, programmeService, moodService, recommendationService) {
 
       var defaultMoodsFile = "../data/default_moods.json";
 
@@ -11,6 +11,11 @@ angular.module('moodsliderApp')
       $scope.moodMax = 5;
 
       var programmes = {};
+
+      moodService.setupMoodSliders(function (moodData) {
+        $scope.moods = moodData;
+        updateRecommendedProgrammes($scope.moods, programmes)
+      });
 
       var setupMoodSliders = function () {
         $http.get(defaultMoodsFile).success(function (moodData) {
@@ -30,6 +35,8 @@ angular.module('moodsliderApp')
        * Setup the programme recommendations with
        * respect to available data.
        */
+      //Instead of callbacks here I would probably opt to use promises but I didn't have time to 
+      //make the change.
       programmeService.getProgrammes(function (programmeData) {
         programmes = programmeData;
         updateRecommendedProgrammes($scope.moods, programmes);
