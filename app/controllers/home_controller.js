@@ -9,6 +9,7 @@ angular.module('moodsliderApp')
       $scope.moodMax = 5;
 
       var programmes = {};
+      var hasRealData = false;
 
       var updateRecommendedProgrammes = function (moodData, programmeData) {
         $scope.recommendedProgrammes = recommendationService.getProgrammeRecommendations(moodData, programmeData);
@@ -28,6 +29,7 @@ angular.module('moodsliderApp')
        * Second callback defaults to placeholder data.
        */
       programmeService.getProgrammes(function (programmeData) {
+        hasRealData = true;       
         programmes = programmeData;
         updateRecommendedProgrammes($scope.moods, programmes);
       }, function (defaultProgrammeData) {
@@ -42,7 +44,7 @@ angular.module('moodsliderApp')
        */
       $scope.sliderCallback = function ($event, value) {
         var moodData = $scope.moods;
-        updateRecommendedProgrammes(moodData, programmes);
+        if (hasRealData) updateRecommendedProgrammes(moodData, programmes);
       };
     }
   ]);
