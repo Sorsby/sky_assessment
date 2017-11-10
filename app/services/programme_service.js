@@ -6,6 +6,10 @@ angular.module('moodsliderApp')
         var defaultProgrammesFile = "../data/default_programmes.json";
 
         return {
+            /**
+             * Calls success cb when uploaded programme data is returned.
+             * Calls the failure cb when no data is returned, which fetched default data.
+             */
             getProgrammes: function (success, failure) {
                 if (programmeJson) {
                     success(programmeJson.programme_data.programme);

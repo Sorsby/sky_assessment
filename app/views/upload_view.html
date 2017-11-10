@@ -1,12 +1,15 @@
 <div class="upload-container" ng-controller="UploadCtrl">
     <h4>Upload programme data file</h4>
-    <button class="btn btn-primary" type="file" ngf-select="uploadFiles($file, $invalidFiles)" accept="xml/*" ngf-max-size="1MB">
-        Select File</button>
-    <div style="font:smaller">
-        {{f.name}} {{errFile.name}} {{errFile.$error}} {{errFile.$errorParam}}
-        <span class="progress" ng-show="f.progress >= 0">
-            <div style="width:{{f.progress}}%" ng-bind="f.progress + '%'"></div>
-        </span>
+
+    {{fileName}} {{fileType}}
+
+    <div style="padding-bottom: 1rem; color: red; font:smaller">
+        {{error}}
     </div>
+
+    <button class="btn btn-primary" type="file" ngf-select="uploadFiles($file)" accept=".xml" ngf-max-size="5MB">
+        Select File
+    </button>
+
     {{errorMsg}}
 </div>
