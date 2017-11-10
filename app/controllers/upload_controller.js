@@ -1,14 +1,6 @@
 'use strict';
 
-angular.module('moodsliderApp.upload', ['ngRoute'])
-
-    .config(['$routeProvider', function ($routeProvider) {
-        $routeProvider.when('/upload', {
-            templateUrl: 'upload/upload_view.html',
-            controller: 'UploadCtrl'
-        });
-    }])
-
+angular.module('moodsliderApp')
     .controller('UploadCtrl', ['$scope', 'ngXml2json', '$location', 'myProgrammeDataService', function ($scope, ngXml2json, $location, myProgrammeDataService) {
         $scope.uploadFiles = function (file, errFiles) {
             $scope.f = file;
