@@ -12,31 +12,23 @@ angular.module('moodsliderApp')
 
       var programmes = {};
 
-      moodService.setupMoodSliders(function (moodData) {
-        $scope.moods = moodData;
-        updateRecommendedProgrammes($scope.moods, programmes)
-      });
-
-      var setupMoodSliders = function () {
-        $http.get(defaultMoodsFile).success(function (moodData) {
-          updateRecommendedProgrammes(moodData, programmes)
-          $scope.moods = moodData;
-        }).error(function (data, status) {
-          console.log("Error: No mood data available, check moods.json is complete and correct!");
-        });
-      };
-      setupMoodSliders();
-
       var updateRecommendedProgrammes = function (moodData, programmeData) {
         $scope.recommendedProgrammes = recommendationService.getProgrammeRecommendations(moodData, programmeData);
       };
 
       /**
-       * Setup the programme recommendations with
-       * respect to available data.
+       * Setup the moodsliders with their default config.
        */
-      //Instead of callbacks here I would probably opt to use promises but I didn't have time to 
-      //make the change.
+      moodService.setupMoodSliders(function (moodData) {
+        $scope.moods = moodData;
+        // updateRecommendedProgrammes($scope.moods, programmes)
+      });
+
+      /**
+       * Setup the programme recommendations.
+       * First callback handles uploaded data being returned.
+       * Second callback defaults to placeholder data.
+       */
       programmeService.getProgrammes(function (programmeData) {
         programmes = programmeData;
         updateRecommendedProgrammes($scope.moods, programmes);
