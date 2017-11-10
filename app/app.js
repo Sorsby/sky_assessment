@@ -3,7 +3,6 @@
 // Declare app level module which depends on views, and components
 var app = angular.module('moodsliderApp', [
   'ngRoute',
-  'moodsliderApp.home',
   'moodsliderApp.upload',
   'ui.bootstrap-slider',
   'ngFileUpload',
@@ -11,6 +10,11 @@ var app = angular.module('moodsliderApp', [
 ]).
 config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
   $locationProvider.hashPrefix('!');
+
+  $routeProvider.when('/home', {
+    templateUrl: 'home/home_view.html',
+    controller: 'HomeCtrl'
+  });
 
   $routeProvider.otherwise({
     redirectTo: '/home'

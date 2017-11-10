@@ -1,14 +1,6 @@
 'use strict';
 
-angular.module('moodsliderApp.home', ['ngRoute'])
-
-  .config(['$routeProvider', function ($routeProvider) {
-    $routeProvider.when('/home', {
-      templateUrl: 'home/home_view.html',
-      controller: 'HomeCtrl'
-    });
-  }])
-
+angular.module('moodsliderApp')
   .controller('HomeCtrl', ['$http', '$scope', 'myProgrammeDataService', function ($http, $scope, myProgrammeDataService) {
 
     var defaultMoodsFile = "../data/default_moods.json";
@@ -91,7 +83,7 @@ angular.module('moodsliderApp.home', ['ngRoute'])
 
       console.log(moodRankings);
       //if no slider input, show all programmes
-      if (moodRankings.length == 0){
+      if (moodRankings.length == 0) {
         recommendations = programmes;
       }
 
