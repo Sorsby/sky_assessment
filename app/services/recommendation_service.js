@@ -18,7 +18,6 @@ angular.module('moodsliderApp')
                 }
                 moodScores[mood.max] = Math.abs(mood.sliderValue);
             }
-            console.log(moodScores);
             return moodScores;
         };
 
