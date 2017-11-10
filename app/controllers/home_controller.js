@@ -4,8 +4,6 @@ angular.module('moodsliderApp')
   .controller('HomeCtrl', ['$http', '$scope', 'programmeService', 'moodService', 'recommendationService',
     function ($http, $scope, programmeService, moodService, recommendationService) {
 
-      var defaultMoodsFile = "../data/default_moods.json";
-
       $scope.moods = {};
       $scope.moodMin = -5;
       $scope.moodMax = 5;
