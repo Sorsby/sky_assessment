@@ -1,16 +1,23 @@
 'use strict';
 
 angular.module('moodsliderApp')
-    .factory('programmeService', function () {
+    .factory('programmeService', function ($http) {
         var programmeJson = null;
+        var defaultProgrammesFile = "../data/default_programmes.json";
+
         return {
-            getJson: function () {
+            getProgrammes: function (success, failure) {
                 if (programmeJson) {
-                    return programmeJson.programme_data.programme;
+                    success(programmeJson.programme_data.programme);
+                    return;
                 }
-                return null;
+                $http.get(defaultProgrammesFile).success(function (data) {
+                    failure(data);
+                }).error(function (data, status) {
+                    console.log("Error: No programme data available, check programme.json is complete and correct!");
+                });
             },
-            setJson: function (value) {
+            setProgrammes: function (value) {
                 programmeJson = value;
             }
         }

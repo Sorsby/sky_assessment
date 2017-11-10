@@ -9,10 +9,10 @@ angular.module('moodsliderApp')
                 var reader = new FileReader();
                 reader.onloadend = function (e) {
                     $scope.data = e.target.result;
-                    var jsonObject = ngXml2json.parser($scope.data);
+                    var programmesJson = ngXml2json.parser($scope.data);
 
                     //send the data to the service.
-                    programmeService.setJson(jsonObject);
+                    programmeService.setProgrammes(programmesJson);
                     //route back to the home page.
                     $location.path("/home");
                 };
