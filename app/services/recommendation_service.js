@@ -4,7 +4,10 @@ angular.module('moodsliderApp')
     .factory('recommendationService', function (utilityService) {
         var recommendations = [];
 
-        //Calculates the values/names of the moods as per slider input
+        /**
+         * Returns an object of mood name:score pairs.
+         * @param {*} moodData a JSON object representing the values of the 4 sliders on the webpage. 
+         */
         var calculateMoodScores = function (moodData) {
             var moodScores = {};
             for (var key in moodData) {
@@ -15,13 +18,14 @@ angular.module('moodsliderApp')
                 }
                 moodScores[mood.max] = Math.abs(mood.sliderValue);
             }
+            console.log(moodScores);
             return moodScores;
         };
 
         return {
             /**
-             * Returns an array of programme recommendations base on
-             * the value of the moodsliders
+             * Returns an array of programme recommendations based on
+             * the value of the moodsliders.
              */
             getProgrammeRecommendations: function (moodData, programmeData) {
 
@@ -31,30 +35,50 @@ angular.module('moodsliderApp')
                 var totalMoodScore = 0;
 
                 //loop through array of mood names and keep track of the highest slider value,
-                //save the mood name of the highest value to a ranking array for providing recommendations later.
+                //tracks multiple highest values through the equalScore variable.
+                //save the mood name of the highest value(s) to an array in order of highest score.
+
+                //double loop here is perfectly fine given the small input size of 4 moods.
                 var moodsToProcess = Object.keys(moodScores);
                 while (moodsToProcess.length != 0) {
+
                     var currentHighest = moodsToProcess[0];
+                    var equalScores = []
+
                     for (var mood in moodScores) {
                         totalMoodScore = totalMoodScore + moodScores[mood];
+
                         if (moodScores[mood] > moodScores[currentHighest]) {
+                            equalScores = []
                             currentHighest = mood;
+                        } else if (moodScores[mood] == moodScores[currentHighest]) {
+                            equalScores.push(mood);
+                        }
+
+                    }
+
+                    //no slider input, return all programmes
+                    if (totalMoodScore == 0) {
+                        return programmeData;
+                    }
+
+                    //Add the moods in order of highest mood score.
+                    if (!utilityService.isInArray(currentHighest, moodRankings)) {
+                        moodRankings.push(currentHighest);
+                    }
+
+                    //Add moods with equal values to the ranking.
+                    for (var mood in equalScores) {
+                        if (!utilityService.isInArray(equalScores[mood], moodRankings)) {
+                            moodRankings.push(equalScores[mood]);
                         }
                     }
 
-                    if (!utilityService.isInArray(currentHighest, moodRankings) &&
-                        totalMoodScore > 0) {
-                        moodRankings.push(currentHighest);
-                    }
                     //remove from the processing array.
                     moodsToProcess.splice(moodsToProcess.indexOf(currentHighest), 1);
                 }
 
                 console.log(moodRankings);
-                //if no slider input, show all programmes
-                if (moodRankings.length == 0) {
-                    recommendations = programmeData;
-                }
 
                 //use given rankings to display relevant programmes
                 for (var mood in moodRankings) {

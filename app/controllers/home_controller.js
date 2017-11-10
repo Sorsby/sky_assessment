@@ -20,7 +20,7 @@ angular.module('moodsliderApp')
        */
       moodService.setupMoodSliders(function (moodData) {
         $scope.moods = moodData;
-        // updateRecommendedProgrammes($scope.moods, programmes)
+        updateRecommendedProgrammes($scope.moods, programmes)
       });
 
       /**
