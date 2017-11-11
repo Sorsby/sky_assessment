@@ -8,13 +8,13 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Usage
 
-You need ```node``` and ```npm``` to run and test this project.
+You need ```npm``` and ```bower``` installed globally to run and test this project.
 
 Install dependencies with ```npm install``` post completion a hook will run ```bower install``` for you.
 
 You may need to run ```npm install http-server -g``` to install and be able to run a local web server.
 
-Once all pre-requisites are met you can run the project with either ```npm start``` or ```http-server -o```.
+Once all pre-requisites are met you can run the project with either ```npm start``` or ```http-server -o``` and navigate to ```http://localhost:8000```
 
 ## Built With
 
