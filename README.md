@@ -20,9 +20,8 @@ Once all pre-requisites are met you can run the project with either ```npm start
 
 ## Notes
 
-Given more time I would implement some form of unit testing for the project.
-
-I have observed a bug on Chrome on Mac and Edge on Widnows whereby an uploaded file does not redirect immediately to the home page, on my test system running Chrome on Windows I have been unable to reproduce but given more time I would address this bug. For now you can just click the home button on the navbar.
+- Given more time I would implement some form of unit testing for the project.
+- I have observed a bug on Chrome on Mac and Edge on Windows whereby an uploaded file does not redirect immediately to the home page, on my test system running Chrome on Windows I have been unable to reproduce but given more time I would address this bug. For now you can just click the home button on the navbar.
 
 ## Built With
 
