@@ -16,6 +16,12 @@ You may need to run ```npm install http-server -g``` to install and be able to r
 
 Once all pre-requisites are met you can run the project with either ```npm start``` or ```http-server -o``` and navigate to ```http://localhost:8000```
 
+## Notes
+
+Given more time I would implement some form of unit testing for the project.
+
+I have observed a bug on Chrome on Mac and Edge on Widnows whereby an uploaded file does not redirect immediately to the home page, on my test system running Chrome on Windows I have been unable to reproduce but given more time I would address this bug. For now you can just click the home button on the navbar.
+
 ## Built With
 
 * [AngularJS](https://angularjs.org/) - The web framework used
