@@ -10,6 +10,8 @@ These instructions will get you a copy of the project up and running on your loc
 
 You need ```npm``` and ```bower``` installed globally to run and test this project.
 
+- You need ```node``` installed for ```npm``` and install bower globally with ```npm install -g bower```.
+
 Install dependencies with ```npm install``` post completion a hook will run ```bower install``` for you.
 
 - Any issues with bower_components missing will require you to run ```bower install``` manually.
