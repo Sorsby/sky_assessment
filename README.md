@@ -12,6 +12,8 @@ You need ```npm``` and ```bower``` installed globally to run and test this proje
 
 Install dependencies with ```npm install``` post completion a hook will run ```bower install``` for you.
 
+- Any issues with bower_components missing will require you to run ```bower install`` manually.
+
 You may need to run ```npm install http-server -g``` to install and be able to run a local web server.
 
 Once all pre-requisites are met you can run the project with either ```npm start``` or ```http-server -o``` and navigate to ```http://localhost:8000```
